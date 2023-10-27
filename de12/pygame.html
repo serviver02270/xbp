@@ -1,0 +1,26 @@
+  <head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  </head>
+
+  <body>
+    <py-script>
+    for i in range(1,10): #コロンが入っていることに注意
+
+        display(i,"回目")
+        import random
+        a = random.randint(50, 100)
+        b = random.randint(50, 100)
+        c = random.randint(50, 100)
+        display(a, " ＋", b, "＋", c)
+
+        Answer=int(input("いくら？"))
+    
+        if Answer == a+b+c:
+            display("<<<<!!!やるやん正解!!!>>>>")
+        else :    
+            display("<<<<!!!ブブー!!!>>>>")
+    
+    </py-script>
+  </body>
