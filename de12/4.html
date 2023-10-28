@@ -10,6 +10,25 @@
         第4回pythonでゲームを作る</div>
     </h1>
     <a href="../de12/python/sansu-rand.py">算数ゲーム</a>
+
+    <pre><code>
+        for i in range(1,10): #コロンが入っていることに注意
+
+        print(i,"回目")
+        import random
+        a = random.randint(50, 100)
+        b = random.randint(50, 100)
+        c = random.randint(50, 100)
+        print(a, " ＋", b, "＋", c)
+        Answer=int(input("いくら？"))
+    
+        if Answer == a+b+c:
+            print("<<<<!!!やるやん正解!!!>>>>")
+        else :    
+            print("<<<<!!!ブブー!!!>>>>")
+      
+
+    </code></pre>
     <div>以下がコードの画面です</div>
     <img src="./images/cord_sansu 2023-10-27 15.14.39.png" alt="" sizes="10%" width="75%">
 </body>
