@@ -1,4 +1,4 @@
-for i in range(1,10): #コロンが入っていることに注意
+for i in range(1,5): #コロンが入っていることに注意
 
     print(i,"回目")
     import random
