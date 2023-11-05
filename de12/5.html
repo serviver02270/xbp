@@ -306,11 +306,48 @@
 <h4>未来の株価予想</h4>
 <div>
     本題の未来の株価予想だが、<br>
-    これは、エラーが発生して不可能だった。
+    これは、エラーが発生して不可能だった。<br>
     以下のが未来の株価予想のコードである。
 </div>
-
-
+<code>
+    <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+    <li style="background-color:#EFF;">import numpy as np</li>
+    <li style="background-color:#EEF;">import pandas as pd</li>
+    <li style="background-color:#EFF;">from sklearn.model_selection import train_test_split</li>
+    <li style="background-color:#EEF;">from sklearn.linear_model import LinearRegression</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># データを読み込む（例：AAPL株価データ）</li>
+    <li style="background-color:#EFF;">data = pd.read_csv('AAPL.csv')  # データファイルのパスを指定</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 必要な特徴量を選択</li>
+    <li style="background-color:#EEF;">data = data[['Open', 'High', 'Low', 'Volume', 'Adj Close']]</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 予測対象の特徴量を選択（例：Adj Closeを予測）</li>
+    <li style="background-color:#EFF;">forecast_col = 'Adj Close'</li>
+    <li style="background-color:#EEF;">data['label'] = data[forecast_col].shift(-1)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 欠損値を削除</li>
+    <li style="background-color:#EFF;">data = data.dropna()</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 特徴量とラベルを分割</li>
+    <li style="background-color:#EEF;">X = np.array(data.drop(['label'], 1))</li>
+    <li style="background-color:#EFF;">y = np.array(data['label'])</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># データをトレーニングセットとテストセットに分割</li>
+    <li style="background-color:#EEF;">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 線形回帰モデルをトレーニング</li>
+    <li style="background-color:#EFF;">clf = LinearRegression()</li>
+    <li style="background-color:#EEF;">clf.fit(X_train, y_train)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 未来の株価を予測</li>
+    <li style="background-color:#EFF;">forecast_set = clf.predict(X_lately)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 予測結果を表示</li>
+    <li style="background-color:#EEF;">print(forecast_set)</li>
+    <li style="background-color:#EFF;"></li>
+    </ol></code>
+<div></div>
 
 </body>
 
