@@ -26,7 +26,12 @@ def get_stock_data(meigara_cd:str, from_date:str, to_date:str):
 def today() -> str:
     return str(datetime.date.today())
 
-    # ==========================================================
+
+
+ #---------コード1----------   
+
+
+# ==========================================================
 # 関数実行
 # ==========================================================
 
@@ -55,6 +60,12 @@ print(data)
 # 2023-08-14  12415  12490  12075  12175  6287400
 # 2023-08-10  12385  12635  12115  12565  7794900
 
+
+
+
+
+#-------チャート分析のコード-----------
+
 import matplotlib.pyplot as plt
 
 # ==========================================================
@@ -62,12 +73,13 @@ import matplotlib.pyplot as plt
 # ==========================================================
 
 # 引数情報
-meigara_cd  = "6758"         # <-ここに銘柄コード四桁を入れましょう
-from_date   = "2023-01-01"   # <-開始日（チャートの一番左端の日を設定しましょう）
-to_date     = today()        # 終了日（ここにチャートの右端の日を設定しましょう）
+meigara_cd  = "6758"         # Sony銘柄
+from_date   = "2023-01-01"   # 開始日
+to_date     = "2024-06-01"      # 終了日
 
 # 関数実行
 data = get_stock_data(meigara_cd,from_date,to_date)
+
 
 # ==========================================================
 # グラフ可視化
@@ -78,9 +90,14 @@ plt.plot_date(data.index, data["Close"], linestyle='solid')
 
 # 書式設定
 plt.xlabel("Date")            # X軸ラベル
-plt.ylabel("Stock (yen)")           # Y軸ラベル
+plt.ylabel("Stock")           # Y軸ラベル
 plt.gcf().autofmt_xdate()     # X軸値を45度回転
 plt.show()                    # グラフ表示
+
+
+#--------時系列モデル作成予想コード----------
+
+
 
 from prophet import Prophet
 import pandas as pd
@@ -94,7 +111,7 @@ import plotly.offline as py
 # 引数情報
 meigara_cd  = "6758"         # <-ここに銘柄コード四桁を入れましょう
 from_date   = "2023-01-01"   # <-開始日（チャートの一番左端の日を設定しましょう）
-to_date     = "2024-01-01"      # 終了日（ここにチャートの右端の日を設定しましょう）
+to_date     = "2024-06-01"    # 終了日（ここにチャートの右端の日を設定しましょう）
 
 
 
@@ -136,3 +153,4 @@ figure = plot_plotly(proph,      # 時系列モデル
 
 # 出力
 py.iplot(figure)
+

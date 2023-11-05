@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+
+
+    <title>小林正樹 第5回</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    </head>
+<body>
+    <h1>pythonのライブラリ機能で遊ぼう
+</h1>
+<h2>「株価予想（+自動売買）python」</h2>
+<h3>作ろうと思った理由</h3>
+<div>アイデアを出す段階で以下のものが上がっていた。</div>
+<ul>
+    <li>お金を稼いでくれる機械</li>
+    <li>ヒモになれる機械</li>
+</ul>
+<div>そこで株価予想と自動売買につながるような
+    <br>pythonコードを書こうと考えた。
+</div>
+<h3>実際のコード
+</h3>
+<h4>2021年01月01日〜2023年11月05日現在のチャート</h4>
+
+<code>
+    <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+    <li style="background-color:#EFF;">import datetime</li>
+    <li style="background-color:#EEF;">import pandas_datareader.data as web</li>
+    <li style="background-color:#EFF;">import yfinance</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 株価データを取得する関数</li>
+    <li style="background-color:#EEF;">def get_stock_data(meigara_cd:str, from_date:str, to_date:str):</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;"""</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;====================================================</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;引数情報</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;・meigara_cd(str): 銘柄コード</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;・from_date(str):  株価取得期間（開始日）</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;・to_date(str):    株価取得期間（終了日）</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;====================================================</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;"""</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# 株価データを取得</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;df = web.DataReader(name        = meigara_cd + ".jp",  # 銘柄コード </li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_source = 'stooq',             # 株価データソース</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start       = from_date,           # 株価取得期間（開始日）</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end         = to_date,             # 株価取得期間（終了日）</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;return df</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 本日日付を取得する関数</li>
+    <li style="background-color:#EFF;">def today() -&gt; str:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;return str(datetime.date.today())</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;# ==========================================================</li>
+    <li style="background-color:#EFF;"># 関数実行</li>
+    <li style="background-color:#EEF;"># ==========================================================</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 引数情報</li>
+    <li style="background-color:#EFF;">meigara_cd  = "6758"         # Sony銘柄</li>
+    <li style="background-color:#EEF;">from_date   = "2021-01-01"   # 開始日</li>
+    <li style="background-color:#EFF;">to_date     = today()        # 終了日</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 関数実行</li>
+    <li style="background-color:#EEF;">data = get_stock_data(meigara_cd,from_date,to_date)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># ==========================================================</li>
+    <li style="background-color:#EEF;"># 結果確認</li>
+    <li style="background-color:#EFF;"># ==========================================================</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 出力</li>
+    <li style="background-color:#EEF;">print(data)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 出力イメージ</li>
+    <li style="background-color:#EFF;">#              Open   High    Low  Close   Volume</li>
+    <li style="background-color:#EEF;"># Date                                           </li>
+    <li style="background-color:#EFF;"># 2023-08-17  12000  12140  11920  12130  2960800</li>
+    <li style="background-color:#EEF;"># 2023-08-16  12200  12205  12010  12010  3069300</li>
+    <li style="background-color:#EFF;"># 2023-08-15  12285  12320  12195  12220  3326700</li>
+    <li style="background-color:#EEF;"># 2023-08-14  12415  12490  12075  12175  6287400</li>
+    <li style="background-color:#EFF;"># 2023-08-10  12385  12635  12115  12565  7794900</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">import matplotlib.pyplot as plt</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># ==========================================================</li>
+    <li style="background-color:#EEF;"># データ取得</li>
+    <li style="background-color:#EFF;"># ==========================================================</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 引数情報</li>
+    <li style="background-color:#EEF;">meigara_cd  = "6758"         # Sony銘柄</li>
+    <li style="background-color:#EFF;">from_date   = "2021-01-01"   # 開始日</li>
+    <li style="background-color:#EEF;">to_date     = today()        # 終了日</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 関数実行</li>
+    <li style="background-color:#EFF;">data = get_stock_data(meigara_cd,from_date,to_date)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># ==========================================================</li>
+    <li style="background-color:#EEF;"># グラフ可視化</li>
+    <li style="background-color:#EFF;"># ==========================================================</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># グラフ描画</li>
+    <li style="background-color:#EEF;">plt.plot_date(data.index, data["Close"], linestyle='solid')</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 書式設定</li>
+    <li style="background-color:#EFF;">plt.xlabel("Date")            # X軸ラベル</li>
+    <li style="background-color:#EEF;">plt.ylabel("Stock (yen)")           # Y軸ラベル</li>
+    <li style="background-color:#EFF;">plt.gcf().autofmt_xdate()     # X軸値を45度回転</li>
+    <li style="background-color:#EEF;">plt.show()                    # グラフ表示</li>
+    </ol></code>
+    <img src="../de12/images/sony_real.png" name="sony_real" width="50%" srcset="">
+
+<h4>【過去予想】2021年01月01日〜2023年11月05日現在のチャート</h4>
+<code>
+    <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+    <li style="background-color:#EFF;">import datetime</li>
+    <li style="background-color:#EEF;">import pandas_datareader.data as web</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 株価データを取得する関数</li>
+    <li style="background-color:#EFF;">def get_stock_data(meigara_cd:str, from_date:str, to_date:str):</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;"""</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;====================================================</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;引数情報</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;・meigara_cd(str): 銘柄コード</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;・from_date(str):  株価取得期間（開始日）</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;・to_date(str):    株価取得期間（終了日）</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;====================================================</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;"""</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;# 株価データを取得</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;df = web.DataReader(name        = meigara_cd + ".jp",  # 銘柄コード </li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_source = 'stooq',             # 株価データソース</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start       = from_date,           # 株価取得期間（開始日）</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end         = to_date,             # 株価取得期間（終了日）</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;return df</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 本日日付を取得する関数</li>
+    <li style="background-color:#EEF;">def today() -&gt; str:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;return str(datetime.date.today())</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# ==========================================================</li>
+    <li style="background-color:#EEF;"># 関数実行</li>
+    <li style="background-color:#EFF;"># ==========================================================</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 引数情報</li>
+    <li style="background-color:#EEF;">meigara_cd  = "6758"         # Sony銘柄</li>
+    <li style="background-color:#EFF;">from_date   = "2023-01-01"   # 開始日</li>
+    <li style="background-color:#EEF;">to_date     = today()        # 終了日</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 関数実行</li>
+    <li style="background-color:#EFF;">data = get_stock_data(meigara_cd,from_date,to_date)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># ==========================================================</li>
+    <li style="background-color:#EFF;"># 結果確認</li>
+    <li style="background-color:#EEF;"># ==========================================================</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 出力</li>
+    <li style="background-color:#EFF;">print(data)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 出力イメージ</li>
+    <li style="background-color:#EEF;">#              Open   High    Low  Close   Volume</li>
+    <li style="background-color:#EFF;"># Date                                           </li>
+    <li style="background-color:#EEF;"># 2023-08-17  12000  12140  11920  12130  2960800</li>
+    <li style="background-color:#EFF;"># 2023-08-16  12200  12205  12010  12010  3069300</li>
+    <li style="background-color:#EEF;"># 2023-08-15  12285  12320  12195  12220  3326700</li>
+    <li style="background-color:#EFF;"># 2023-08-14  12415  12490  12075  12175  6287400</li>
+    <li style="background-color:#EEF;"># 2023-08-10  12385  12635  12115  12565  7794900</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">import matplotlib.pyplot as plt</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># ==========================================================</li>
+    <li style="background-color:#EFF;"># データ取得</li>
+    <li style="background-color:#EEF;"># ==========================================================</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 引数情報</li>
+    <li style="background-color:#EFF;">meigara_cd  = "6758"         # &lt;-ここに銘柄コード四桁を入れましょう</li>
+    <li style="background-color:#EEF;">from_date   = "2021-01-01"   # &lt;-開始日（チャートの一番左端の日を設定しましょう）</li>
+    <li style="background-color:#EFF;">to_date     = today()        # 終了日（ここにチャートの右端の日を設定しましょう）</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 関数実行</li>
+    <li style="background-color:#EEF;">data = get_stock_data(meigara_cd,from_date,to_date)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># ==========================================================</li>
+    <li style="background-color:#EFF;"># グラフ可視化</li>
+    <li style="background-color:#EEF;"># ==========================================================</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># グラフ描画</li>
+    <li style="background-color:#EFF;">plt.plot_date(data.index, data["Close"], linestyle='solid')</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 書式設定</li>
+    <li style="background-color:#EEF;">plt.xlabel("Date")            # X軸ラベル</li>
+    <li style="background-color:#EFF;">plt.ylabel("Stock (yen)")           # Y軸ラベル</li>
+    <li style="background-color:#EEF;">plt.gcf().autofmt_xdate()     # X軸値を45度回転</li>
+    <li style="background-color:#EFF;">plt.show()                    # グラフ表示</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">from prophet import Prophet</li>
+    <li style="background-color:#EEF;">import pandas as pd</li>
+    <li style="background-color:#EFF;">from prophet.plot import plot_plotly</li>
+    <li style="background-color:#EEF;">import plotly.offline as py</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># ==========================================================</li>
+    <li style="background-color:#EFF;"># データ取得</li>
+    <li style="background-color:#EEF;"># ==========================================================</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 引数情報</li>
+    <li style="background-color:#EFF;">meigara_cd  = "6758"         # &lt;-ここに銘柄コード四桁を入れましょう</li>
+    <li style="background-color:#EEF;">from_date   = "2022-01-01"   # &lt;-開始日（チャートの一番左端の日を設定しましょう）</li>
+    <li style="background-color:#EFF;">to_date     = today()        # 終了日（ここにチャートの右端の日を設定しましょう）</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 関数実行</li>
+    <li style="background-color:#EEF;">data = get_stock_data(meigara_cd,from_date,to_date)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># Prophet投入用インプットデータ作成</li>
+    <li style="background-color:#EFF;">df = pd.DataFrame({"ds":data.index, "y":data["Close"]}).reset_index(drop=True)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># ==========================================================</li>
+    <li style="background-color:#EEF;"># 時系列モデル作成</li>
+    <li style="background-color:#EFF;"># ==========================================================</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># モデルインスタンス</li>
+    <li style="background-color:#EEF;">proph = Prophet()</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># モデル学習</li>
+    <li style="background-color:#EFF;">proph.fit(df)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># ==========================================================</li>
+    <li style="background-color:#EEF;"># 予測</li>
+    <li style="background-color:#EFF;"># ==========================================================</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 未来予測用のデータフレーム</li>
+    <li style="background-color:#EEF;">future = proph.make_future_dataframe(periods=365)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 時系列を予測</li>
+    <li style="background-color:#EFF;">forecast = proph.predict(future)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># ==========================================================</li>
+    <li style="background-color:#EEF;"># 予測（可視化）</li>
+    <li style="background-color:#EFF;"># ==========================================================</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">py.init_notebook_mode()</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">figure = plot_plotly(proph,      # 時系列モデル</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forecast,   # 予測結果</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 出力</li>
+    <li style="background-color:#EEF;">py.iplot(figure)</li>
+    </ol></code>
+    <img src="../de12/images/sony_exceptFigure_1.png" name="sony_exceptFigure_1" width="50%">
+
+<div>また、同じ期間の実際のグラフと過去予想のグラフを、
+<br>pythonライブラリ「OpenCV」という画像の差異を検出するツールを使ったところ、
+<br>全く違いがなかったので過去予想をすると実際のグラフと同じものを出すことがわかった。
+</div>
+<code>
+    <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+    <li style="background-color:#EFF;">import cv2</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># Load images</li>
+    <li style="background-color:#EEF;">img1 = cv2.imread('xbp/de12/images/sony_exceptFigure_1.png')</li>
+    <li style="background-color:#EFF;">img2 = cv2.imread('xbp/de12/images/sony_real.png')</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># Convert images to grayscale</li>
+    <li style="background-color:#EEF;">img1_gray = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)</li>
+    <li style="background-color:#EFF;">img2_gray = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># Calculate absolute difference between the two images</li>
+    <li style="background-color:#EEF;">diff = cv2.absdiff(img1_gray, img2_gray)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># Apply threshold to identify significant differences</li>
+    <li style="background-color:#EFF;">thresh = 30</li>
+    <li style="background-color:#EEF;">diff[diff &lt; thresh] = 0</li>
+    <li style="background-color:#EFF;">diff[diff &gt;= thresh] = 255</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># Find contours of significant differences</li>
+    <li style="background-color:#EEF;">contours, hierarchy = cv2.findContours(diff, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># Draw rectangles around the differences</li>
+    <li style="background-color:#EFF;">for contour in contours:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;(x, y, w, h) = cv2.boundingRect(contour)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;cv2.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># Display the output image with differences highlighted</li>
+    <li style="background-color:#EEF;">cv2.imshow('Output', img1)</li>
+    <li style="background-color:#EFF;">cv2.waitKey(0)</li>
+    <li style="background-color:#EEF;">cv2.destroyAllWindows()</li>
+    <li style="background-color:#EFF;"></li>
+    </ol></code>
+<img src="../de12/images/def_gragh.png" alt="" width="50%" srcset="">
+<div>実際に違うと赤文字で指摘される。</div>
+<a href="http://gazushige.com/blog/319668e7-c5ac-470c-a28e-f01214e69a8a#opencv%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">【python】2枚の画像の違いを検出する方法【初心者】</a>
+
+<div>基本的に外部サイトをコピペしたものではあるが、
+    <br>一部y軸stockの通貨単位がわからなかったので、
+    <br>改変してある。
+</div>
+<h4>未来の株価予想</h4>
+<div>
+    本題の未来の株価予想だが、<br>
+    これは、エラーが発生して不可能だった。
+    以下のが未来の株価予想のコードである。
+</div>
+
+
+
+</body>
+
+<footer>
+    <h3>参考にした外部サイト</h3>
+    <a href="https://di-acc2.com/programming/python/27833/#index_id0">【Python】日本株価データを取得・分析・予測する方法</a>
+    <br><a href="http://gazushige.com/blog/319668e7-c5ac-470c-a28e-f01214e69a8a#opencv%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">【python】2枚の画像の違いを検出する方法【初心者】</a>
+    <br><a href="http://https://www.google.com/search?q=sony+%E6%A0%AA%E4%BE%A1&oq=sony+%C2%A5&gs_lcrp=EgZjaHJvbWUqBwgCEAAYogQyBggAEEUYOTIHCAEQABiiBDIHCAIQABiiBDIHCAMQABiiBNIBCDYwMDlqMWo3qAIAsAIA&sourceid=chrome&ie=UTF-8">sony株価 (google finance)</a>
+    
+</footer>
+
+
+
+
+</html>
