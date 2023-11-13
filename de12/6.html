@@ -11,10 +11,14 @@
 
 <body>
     <h1>第6回pythonとスーモで物件探し</h1>
-    <div>4班メンバーの要望</div>
-<img src="../de12/images/Su-mo__100442120.jpg" width="25%">
-<h2>使えるタグ（？）集</h2>
-<img src="../de12/images/rainbow csv_Yokohama_kawasaki_cvs.png" width="25%"><img src="../de12/images/Yokohama_Kawasaki_2022cvs.png" width="25%">
+    <h2>使えるタグ（？）集</h2>
+    <!--
+        筆跡は個人情報保護法では筆跡は個人識別符号として、
+        虹彩、声紋、歩行の態様、手指の静脈、指紋・掌紋と
+        同様の扱いになると解釈できます。
+        https://www.iwi.co.jp/blog/security/cybersecurity_measures/202203-PIP/#:~:text=%E3%80%8C%E7%AD%86%E8%B7%A1%E3%80%8D%E3%81%AF%E5%80%8B%E4%BA%BA%E6%83%85%E5%A0%B1%E3%81%AB,%E3%82%8C%E3%82%8B%E3%81%A8%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82
+    -->
+<img src="../de12/img(suumo)/rainbow csv_Yokohama_kawasaki_cvs.png" width="45%"><img src="../de12/img(suumo)/Yokohama_Kawasaki_2022cvs.png" width="45%">
 <div>
     名称，カテゴリー、アドレス、アクセス、路線，駅、バス停，MMまで，バス，徒歩，
     <br>
@@ -25,7 +29,7 @@
 <h2>ターゲットを絞る</h2>
 <div>今回は、5人の意見を参考にターゲットを想像してみる。
     <br>
-    左上から時計順に、優先順位つけて
+    元の資料の左上から時計順に、優先順位も参考にしつつ
 </div>
 
 
@@ -169,8 +173,8 @@ pythonが使いやすくなるような、拡張機能もいくつか発見し�
 また、chatGPT等に質問するにも「suumo.py」が大きいからか、何故かできなかったのである。<br>
 もしこのExcelの作業をpythonでもできればすごくいいと思った。<br>
 </div>
-<img src="../de12/images/ToExcekFromCSVsuumo.png" width="25%"><br>
-<a href="../Excel/Excel版yokohama_kawasaki_2022.xlsx">Excel版Yokohama_Kawasaki_2022.cvs</a>
+<img src="../de12/img(suumo)/ToExcekFromCSVsuumo.png" width="55%"><br>
+<a href="../Excel/Excel版yokohama_kawasaki_2022.xlsx">Excel版Yokohama_Kawasaki_2022.xlsx(元.cvs)</a>
 
 <h3>excel版作成の手順</h3>
 <ol>
@@ -184,16 +188,37 @@ pythonが使いやすくなるような、拡張機能もいくつか発見し�
 </ol>
 
 
-
-
-<h6>発見した拡張機能</h6>
+<h3>発見した拡張機能</h3>
 <div>
 CSVフォルダを右クリックでpreviewを押すと、そこには美しく直感的な操作が！<a href="http://https://devlog.mescius.jp/vscode_excel_csv_viewer/">Excel Viewer</a><br>
+<img src="../de12/img(suumo)/csv_preview.png" width="50%"><br>
 CSVフォルダを右クリックでEdit CSVを押すと、そこには美しく直感的な操作が！<a href="http://https://webrandum.net/vscode-plugin-edit-csv/#google_vignette">Edit CSV</a><br>
-CSVの属性に色付けできる<a href="http://https://qiita.com/0w0/items/07a481921a2ac09a049f">Rainbow CSV</a><br>
-今後のVScodeライフに<a href="http://qiita.com/ta-iga/items/94ed09aa8117d6926b36"></a>qiita便利な拡張機能集</div>
-<img src="../de12/images/csv_preview.png" width="30%">
-<img src="../de12/images/rainbow csv_Yokohama_kawasaki_cvs.png" width="30%">
+<div>（画像なし）</div><br>
 
-<h6>拡張機能のご利用は自己責任でお願いします。（業者リスペクト）</h6>
+CSVの属性に色付けできる<a href="http://https://qiita.com/0w0/items/07a481921a2ac09a049f">Rainbow CSV</a><br>
+<img src="../de12/img(suumo)/rainbow csv_Yokohama_kawasaki_cvs.png"width="40%" ><br>
+
+今後のVScodeライフに<a href="http://qiita.com/ta-iga/items/94ed09aa8117d6926b36">qiita便利な拡張機能集</a></div>
+
+
+<h6>それぞれの拡張機能のご利用は自己責任でお願いします。（業者リスペクト）</h6>
+
+<h3>おまけ</h3>
+<img src="../de12/img(suumo)/TY-yachin.png"width="40%">
+<img src="../de12/img(suumo)/TYline-ekibetsu-ave-sumtime.png" width="40%">
+<img src="../de12/img(suumo)/Yachin-m^2-inTYline.png" width="40%">
+<img src="../de12/img(suumo)/Yachin-sumtime-inTY.png" width="40%">
+
+<div>この4枚のグラフから
+<ul>
+<li>家賃が低い</li>
+<li>合計時間が短い</li>
+<li>面積が広い</li>
+<li>横浜キャンパスまでが短い<br>
+    (≒白楽駅、東白楽駅まで近い)</li>
+</ul>
+を満たすのは<br>
+「白楽駅」「東白楽駅」「妙蓮寺駅」「菊名」なので、
+これらが最寄りの駅になってる物件をおすすめする。</div>
+
 </body>
