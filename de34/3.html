@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+
+
+    <title>小林正樹 2年次第3回光センサーとarduinoUNO</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    </head>
+    
+<body>
+<h1>暗くなると光るArduino回路</h1>    
+<code>
+    <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+    <li style="background-color:#EFF;">const int analogPin = A1; // アナログ入力ピン</li>
+    <li style="background-color:#EEF;">const int ledPin = 13;    // LEDを接続するピン</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">void setup() {</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;pinMode(ledPin, OUTPUT); // LEDピンを出力に設定</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;Serial.begin(9600);      // シリアル通信を開始</li>
+    <li style="background-color:#EFF;">}</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">void loop() {</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;int sensorValue = analogRead(analogPin); // アナログ入力から値を読み取る</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;Serial.println(sensorValue);             // 値をシリアルモニタに出力</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;if (sensorValue &gt; 300) { // もしセンサーの値が.  より大きければ</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite(ledPin, HIGH); // LEDを点灯</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;} else {</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite(ledPin, LOW); // それ以外はLEDを消灯</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;}</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;delay(1000); // 1000ミリ秒待つ</li>
+    <li style="background-color:#EEF;">}</li>
+    <li style="background-color:#EFF;"></li>
+    </ol></code>
+
+
+
+<h1>データをグラフにする</h1> 
+<div></div>   
+<h2>ArduinoUNOのコード</h2>
+    <code>
+        <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+        <li style="background-color:#EFF;">void setup() {</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;// put your setup code here, to run once:</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;Serial.begin(9600);</li>
+        <li style="background-color:#EEF;">}</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">void loop() {</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;// put your main code here, to run repeatedly:</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;int val=0;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;val=analogRead(1);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;Serial.println(val);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;delay(5000);//5000ms=5秒　ごとに送信。【注意】サーバーに負荷がかかるので5000より小さい値は設定しないでください。</li>
+        <li style="background-color:#EEF;">//実装する際は可能な限り大きな数字にしてください。</li>
+        <li style="background-color:#EFF;">}</li>
+        <li style="background-color:#EEF;"></li>
+        </ol></code>
+<h2>pythonのコード</h2>
+<code>
+    <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+    <li style="background-color:#EFF;">import dfLink</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">#端末設定---------------------</li>
+    <li style="background-color:#EEF;">#端末keyを指定してください。</li>
+    <li style="background-color:#EFF;">#(これを間違えると認証されていないユーザー扱いになる。)</li>
+    <li style="background-color:#EEF;">pkey='R07yxaQUaW9JEA5m7N9O'</li>
+    <li style="background-color:#EFF;">#-------------------------------------------</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">#シリアルポートを入力-------------------------</li>
+    <li style="background-color:#EEF;">serial_port='/dev/tty.usbmodem11201'</li>
+    <li style="background-color:#EFF;">#-------------------------------------------</li>
+    <li style="background-color:#EEF;">#Arduinoとのシリアル通信設定-------------------</li>
+    <li style="background-color:#EFF;">my_arduino = dfLink.set_serial(serial_port,9600)</li>
+    <li style="background-color:#EEF;">#-------------------------------------------</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">#while Trueは無限ループ#----------------------</li>
+    <li style="background-color:#EFF;">while True:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;# Arduinoからreadlineコマンドでデータを取得し、data_from_arduinoという変数に格納</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;data_from_arduino=my_arduino.readline()</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;#stripコマンドで、data_from_arduinoの中の余計な文字を削除</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;#さらにintで文字で送られてきたデータをint型に変換</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;data=int(data_from_arduino.strip())</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print(data)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# データの設定--------------------------------</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;int_data = data #Arduinoから受け取った値をここでint_dataにいれる</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;float_data = ""</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;txt_data = ""</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# -------------------------------------------</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# データの送信---------------------------------</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;# 整数データ:int_data</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# 実数データ(小数を含むデータ):float_data</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;# テキストデータ:txt_data</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;ret = dfLink.sendData_To_dfLink(int_data=int_data,float_data=float_data,text_data=txt_data,pkey=pkey)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print(ret)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# -------------------------------------------</li>
+    <li style="background-color:#EEF;">#-------------------------------------------</li>
+    <li style="background-color:#EFF;"></li>
+    </ol></code>
+
+
+
+</body>    
