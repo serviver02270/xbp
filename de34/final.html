@@ -9,24 +9,184 @@
 </head>
 <body>
     <h1>de34 最終課題 LEDルーレット目押し</h1>
-    <div>
+    
+    <div id = invite>
+        <h2>作品紹介動画（音量注意）</h2>
     今回はArduinoとLEDを使ったシンプルなルーレットのゲームを作りました！<br>
+
+    <!--動画埋め込みリンク-->
+    <!--width="560+56*5"とやってみたが、変わらなかった。
+    htmlには計算能力はないのかも-->
+        <iframe width="720" height="400" src="https://www.youtube.com/embed/c8CCxS4D13s?si=4U9ETKGpkPUzvDGw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <br>
+    見れない方は
+    <a href="https://www.youtube.com/watch?v=c8CCxS4D13s">こちら</a>
+    から!<br>
+    URLリンク：　https://www.youtube.com/watch?v=c8CCxS4D13s
+    <br>
+
+    <h2>想定してるストーリー動画</h2>
+            <iframe width="720" height="400" src="https://www.youtube.com/embed/J2KrhAWprqk?si=YNQ2bvVzhjiAGsf2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <br>
+            見れない方は
+            <a href="https://www.youtube.com/watch?v=J2KrhAWprqk">こちら</a>
+            から! <br>
+            URLリンク：　https://www.youtube.com/watch?v=J2KrhAWprqk
+ 
+            <!--ここで.mp4ファイルがいくつもde34でリポジトリにあげられていたことに気づく。あかん。-->
+    </div>        
+    <div id = fieldwork>
+    <h2>フィールドワーク</h2>
+    <h3>エジソンプラザことタック電子へ</h3>
+    石川町駅を降りて数分のところでMapがここを示す<br>
+    <img src="../de34/images/images_de34_final/tack1.jpg" width="40%">
+    <img src="../de34/images/images_de34_final/tack2.jpg" width="40%">
+    <br> タック電子を確認するも中は閉まっている模様。隣にも電子部品を販売している店を発見。<br>
+    <img src="../de34/images/images_de34_final/tack3.jpg" width="40%">
+    <img src="../de34/images/images_de34_final/tack4.jpg" width="40%">
+    <br> 様々な電子部品を見て回ったが、目当てのものはなかった。<br>
+    <img src="../de34/images/images_de34_final/tack5.jpg" width="40%">
+    <img src="../de34/images/images_de34_final/tack6.jpg" width="40%">
+    <br> タック電子販売と（有）シンコー電機の位置　<br>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26004.84193560684!2d139.6181899441116!3d35.439807763652766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185ce5be060a73%3A0x59fbf9bc93e1f405!2sTack%20Denshi!5e0!3m2!1sen!2sau!4v1721923112467!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     
     </div>
-<!--動画埋め込みリンク-->
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c8CCxS4D13s?si=4U9ETKGpkPUzvDGw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<div>
-    見れない方はこちらから!
-</div>
-    <a href="https://www.youtube.com/watch?v=c8CCxS4D13s">
-        URLリンク：　https://www.youtube.com/watch?v=c8CCxS4D13s</a>
+    
+    <div id = make>
+    <h2>Arduinoのコードと回路</h2>
 
-        <div>想定してるストーリー動画
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/J2KrhAWprqk?si=YNQ2bvVzhjiAGsf2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<a href="https://www.youtube.com/watch?v=J2KrhAWprqk">
-    <br>
-    URLリンク：　https://www.youtube.com/watch?v=J2KrhAWprqk
-</a>
-
-        </div>
+<h3>コード</h3>
+<code>
+    <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+    <li style="background-color:#EFF;">//当Webサイトに掲載された内容によって生じた損害等の一切の責任を負いません。</li>
+    <li style="background-color:#EEF;">//当webサイトの免責事項に同意いただける場合に限り、プログラムをご利用いただけます。</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">#define SW_PIN 13 //スイッチが接続されているピンを定義</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">int RAN_NUM = 1;  //ランダムな数を格納する変数</li>
+    <li style="background-color:#EFF;">int sw_state = 0; //スイッチの状態を記憶する変数</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">void setup() {</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;//入力ピンに設定</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;pinMode( SW_PIN, INPUT_PULLUP );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;//出力ピンに設定</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;pinMode( 4, OUTPUT );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;pinMode( 5, OUTPUT );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;pinMode( 6, OUTPUT );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;pinMode( 7, OUTPUT );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;pinMode( 8, OUTPUT );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;pinMode( 9, OUTPUT );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;pinMode( 10, OUTPUT );</li>
+    <li style="background-color:#EEF;">}</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">void loop() {</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;//SWが押されるまでランダムに出目を表示し続ける</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;while(sw_state == 0){</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;RAN_NUM = random(1,7);  //ランダムに1〜6の出目を生成</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;ledOff();               //LEDをすべて消灯</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;ledOn(RAN_NUM);         //出目に応じたLEDを点灯</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;//SWが押されたら、状態を移行する（ループを抜ける）</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;if(digitalRead(SW_PIN)==LOW){</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sw_state = 1; //状態を移行</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delay(200);</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;}</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;//SWが押されるまで決まった出目を表示し続ける</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;while(sw_state == 1){</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;ledOn(RAN_NUM);         //出目に応じたLEDを点灯</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;//SWが押されたら、状態を移行する（ループを抜ける）</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;if(digitalRead(SW_PIN)==LOW){</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sw_state = 0; //状態を移行</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delay(200);</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;}</li>
+    <li style="background-color:#EEF;">}</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">//渡された出目に対応するledをONにする関数</li>
+    <li style="background-color:#EFF;">void ledOn(int led_ran_num){</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;switch(led_ran_num){</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;case 1:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 4, HIGH );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;case 2:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 5, HIGH );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 10, HIGH );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;case 3:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 4, HIGH );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 5, HIGH );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 10, HIGH );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;case 4:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 5, HIGH );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 7, HIGH );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 8, HIGH );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 10, HIGH );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;     </li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;case 5:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 4, HIGH );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 5, HIGH );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 7, HIGH );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 8, HIGH );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 10, HIGH );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;  </li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;case 6:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 5, HIGH );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 6, HIGH );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 7, HIGH );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 8, HIGH );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 9, HIGH );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite( 10, HIGH );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;      </li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;delay(10);</li>
+    <li style="background-color:#EEF;">}</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">//ledをOFFにする関数</li>
+    <li style="background-color:#EFF;">void ledOff(){</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;digitalWrite( 4, LOW );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;digitalWrite( 5, LOW );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;digitalWrite( 6, LOW );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;digitalWrite( 7, LOW );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;digitalWrite( 8, LOW );</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;digitalWrite( 9, LOW );</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;digitalWrite( 10, LOW );</li>
+    <li style="background-color:#EFF;">}</li>
+    </ol></code>
+    <h3>回路図</h3>
+<img src="../de34/images/images_de34_final/make1.jpg" width="50%">
+<br>
+<h3>実物の回路</h3>
+<img src="../de34/images/images_de34_final/make2.jpg" width="50%"><br>
+<img src="../de34/images/images_de34_final/make2.1.jpg" width="50%">
+<br>
+実際やってみると電気を通してないジャンパーワイヤーがあったり、<br>
+なぜか真ん中の境を越えると下で通じない謎仕様に遭遇しながらも一応完成！<br>
+ちなみに「オームの法則」から、抵抗は小さい方が電流が強くなって<br>
+ギラギラ光る上に抵抗器ケチれると考え、<br>
+試しに抵抗なしで「 n PIN（+）、LED、GND（−）」の順に回路を組んだところ、<br>
+抵抗器有りの時よりもLEDの光は鮮やかさ、綺麗さが減少した。<br>
+もしかしたら、フィラメント的なものが燃えていたりするのかもしれない。<br>
+また、「抵抗ぶっちゃけいらない？」と調べたところ、 <br>
+抵抗器が電流の熱へのエネルギーロスを防ぎ、<br>
+うまいこと調整してるのだそう。<br>
+<br>
+それとオームの法則、<br>
+<b>電圧V（一定）＝電流I（変動）×抵抗Ω（抵抗器次第）</b><br>
+を、抵抗器を100Ω、1kΩ、5kΩ、10kΩなどを使って改めて実感した。
+<br>
+<br>
+    参考: <br>
+    みんなの電気・電子回路 さんのNote記事
+    <a href="https://note.com/shingo_shirogane/n/nd790bdf12a91#2eaa4946-5a34-4eea-8cd6-6a77ffd776c8">
+    【解説】Arduinoを使った電子サイコロの作り方 #7    
+    </a>
+    </div>
 </body>
