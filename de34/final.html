@@ -6,6 +6,52 @@
     <title>de34 最終課題 LEDルーレット目押し</title>
 
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            max-width: 800px;
+            margin: auto;
+        }
+        .card img {
+            max-width: 100px;
+            margin-right: 16px;
+        }
+        .card-content {
+            flex: 1;
+        }
+        .card-content h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .card-content a {
+            color: blue;
+            text-decoration: none;
+        }
+        .card-content .trustpilot {
+            color: green;
+            font-weight: bold;
+        }
+        .card-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        .card-content ul li {
+            margin: 4px 0;
+        }
+        .button {
+            background-color: #6190ff;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <h1>de34 最終課題 LEDルーレット目押し</h1>
@@ -57,9 +103,40 @@
     <br> 様々な電子部品を見て回ったが、目当てのものはなかった。<br>
     <img src="../de34/images/images_de34_final/tack5.jpg" width="40%">
     <img src="../de34/images/images_de34_final/tack6.jpg" width="40%">
-    <br> タック電子販売と（有）シンコー電機の位置　<br>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26004.84193560684!2d139.6181899441116!3d35.439807763652766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185ce5be060a73%3A0x59fbf9bc93e1f405!2sTack%20Denshi!5e0!3m2!1sen!2sau!4v1721923112467!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <br>
+  <br>
+    <!--タック電子のホームページ紹介-->
+    <div class="card">
+        <img src="http://shop11.makeshop.jp/shopimages/tack/main_logo.jpg" alt="tack">
+        <div class="card-content">
+            <a href="http://www.tackdenshi.co.jp/"><h2>タック電子販売のホームページ</h2></a>
+            
+            <ul>
+                <li><a href="http://www.tackdenshi.co.jp/">http://www.tackdenshi.co.jp/</a></li>
+            </ul>
+        </div>
+        <a class="button" href="http://www.tackdenshi.co.jp/">見にいく</a>
+    </div>
     
+    <h4>タック電子販売（有）の所在地</h4>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26004.84193560684!2d139.6181899441116!3d35.439807763652766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185ce5be060a73%3A0x59fbf9bc93e1f405!2sTack%20Denshi!5e0!3m2!1sen!2sau!4v1721923112467!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <br>
+    <br>
+<!--シンコー電機のホームページ紹介-->
+<div class="card">
+    <img src="" alt="Shinko">
+    <div class="card-content">
+        <a href=""><h2>シンコー電機のホームページ</h2></a>
+        
+        <ul>
+            <li><a href="http://">まだない</a></li>
+        </ul>
+    </div>
+    <a class="button" href="http://">見にいく</a>
+</div>
+
+    <h4>（有）シンコー電機の所在地</h4>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d830557.3316398459!2d138.65560570486397!3d35.59407245481193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185ce5be060a73%3A0xdb1d90c91ef32fd0!2sShinko%20Denki!5e0!3m2!1sen!2sjp!4v1722053002610!5m2!1sen!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     
     <div id = make>
@@ -213,10 +290,26 @@
         <br><br><br><br>
 
        <h2> 参考: </h2>
+
+       <!--隠す
         みんなの電気・電子回路 さんのNote記事
         <a href="https://note.com/shingo_shirogane/n/nd790bdf12a91#2eaa4946-5a34-4eea-8cd6-6a77ffd776c8">
         【解説】Arduinoを使った電子サイコロの作り方 #7    
         </a>
+        -->
+
+        <!--シンコー電機のホームページ紹介-->
+<div class="card">
+    <img src="https://assets.st-note.com/production/uploads/images/137908904/rectangle_large_type_2_caabcd4e85c05d9d33fe591f1956be43.jpeg?width=2000&height=2000&fit=bounds&quality=85" alt="Shinko">
+    <div class="card-content">
+        <a href="https://note.com/shingo_shirogane/n/nd790bdf12a91#2eaa4946-5a34-4eea-8cd6-6a77ffd776c8"><h2>みんなの電気・電子回路 さんのNote記事</h2></a>
+        
+        <ul>
+            <li><a href="https://note.com/shingo_shirogane/n/nd790bdf12a91#2eaa4946-5a34-4eea-8cd6-6a77ffd776c8">【解説】Arduinoを使った電子サイコロの作り方 #7</a></li>
+        </ul>
+    </div>
+    <a class="button" href="https://note.com/shingo_shirogane/n/nd790bdf12a91#2eaa4946-5a34-4eea-8cd6-6a77ffd776c8">見にいく</a>
+</div>
         </div>
 
 
