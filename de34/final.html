@@ -98,8 +98,9 @@
     ■　⇒考えること、疑問など<br>
     ●　⇒具体的なやること<br>
     ▶　⇒やったこと<br>
-    <br>   
-    <br>■カーテンを自動開閉する装置を作ろう。何が必要だろうか。
+    <br>
+    <img src="../de34/images/images_de34_final/ka-ten.jpg" width="50%">   
+    <br>■朝自然に起きれるように、カーテンを自動開閉する装置を作ろう。何が必要だろうか。
     <br>カーテンを動かすモーターが必要だ。
     <br>●ステッピングモーターを買おう。
     <br>▶ステッピングモーター(28BYJ-48)を購入。
@@ -107,9 +108,67 @@
     <img src="../de34/images/images_de34_final/step28BYJ-48.png" width="20%" >
 
     <br>ここで緑の基盤のような部分に何のPINを挿せばいいか迷い、停滞。
-    <br>危機を感じ、同時に次の作品も開始。
+    <br>未完成の危機を感じ、同時に次の作品も開始。
+    <br>(その後オスオスではないオスメスのジャンパーワイヤーを発見、<br>
+    購入しモーターが動くようになった。)br
+    その時のコード⬇︎<br>
+    <img src="../de34/images/images_de34_final/step28code.png" width="50%" >
+    <br>
+    <br><h5>ーーここまでで2週間ほど経ったーー</h5>
 
+    <!--次の作品-->
+<br><img src="../de34/images/images_de34_final/otogame.jpg" width="50%">
+    <br>■それはマイクセンサーとディスプレイを使って音を表示し、<br>
+    それに一番近い音を手をたたく音で出した人が勝ちというゲームを<br>
+    考えています。このゲームはいろんな遊び方があるのですが<br>
+    まずはこの遊び方を作っていこうと考えています。<br>
+    ●  <a href="https://amzn.asia/d/08BhVFkg" target="_blank">サウンドセンサー</a><br>
+        <a href="https://amzn.asia/d/02XSwowQ" target="_blank">ディスプレイ</a>
+        を購入。<br>
+    ▶実際にセンサーをArduinoUNOに繋げた。<br>
+    しかしセンサーの感度調整に難航。<br>
+    近くで大声を出しても値に変化が起きず、<br>
+    トライアンドエラーを3,40回繰り返し、<br>
+    他の人やSAのあみくらさんの協力を得ても<br>
+    それでもセンサーの仕様がわからず断念。<br>
     </div>
+
+    <div>■Google calender APIを利用してGoogle calenderの曜日や予定によって<br>
+        aruduinoと接続したLEDライトが光るというものを作ろう。<br>
+        ●wifiモジュールESP3266、または上位機種ESP32をArduinoに繋ぐ。<br>
+        ▶一応反応は見えたが、1.Arduino IDEのコードでサーバーを作る。<br>
+        2.サーバーがwifiモジュールに信号送信、3.モジュールが受信、<br>
+        4.それをジャンパーワイヤーを介し、回路全体に信号を送る。<br>
+        5.その結果をPCのシリアルポートに送信<br>
+        のような反応を起こせず。断念。<br>
+        <br><img src="../de34/images/images_de34_final/esp3266code.png" width="50%">
+
+        
+        ■メンバーの一人がパチスロの目押しが上手くなりたいとのことで<br>
+        aruduinoでLチカを七つ作ってそれを3つ<br>
+        用意することでスロットの目押しようなあそびができるものをつくる。
+        ●以下のものを用意した。
+        LED7*3、<br>
+        ブレッドボード*3 <br>
+        100~1000Ωの抵抗器*3 <br>
+        スイッチ<br>
+        ジャンパーワイヤー 紐状のものとホッチキス状のもの50個前後<br>
+        <a href="#fieldwork">フィールドワーク</a>や<br>
+        <a href="#make">Arduinoのコードや実物回路調整などの</a>
+        ▶試行錯誤あって<br>
+        なんとか7つのLEDがチカチカしてそれをスイッチで止めるような装置が完成。<br>
+        <div class="card">
+            <img src="https://assets.st-note.com/production/uploads/images/137908904/rectangle_large_type_2_caabcd4e85c05d9d33fe591f1956be43.jpeg?width=2000&height=2000&fit=bounds&quality=85" alt="Note">
+            <div class="card-content">
+                <a href="https://note.com/shingo_shirogane/n/nd790bdf12a91#2eaa4946-5a34-4eea-8cd6-6a77ffd776c8"><h2>【詳しくはこちら】みんなの電気・電子回路 さんのNote記事</h2></a>
+                
+                <ul>
+                    <li><a href="https://note.com/shingo_shirogane/n/nd790bdf12a91#2eaa4946-5a34-4eea-8cd6-6a77ffd776c8">【解説】Arduinoを使った電子サイコロの作り方 #7</a></li>
+                </ul>
+            </div>
+</div>
+<br>
+
     <div id = fieldwork>
     <h2>フィールドワーク</h2>
     <h3>エジソンプラザことタック電子へ</h3>
