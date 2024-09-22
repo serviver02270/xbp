@@ -1,67 +1,110 @@
 <!DOCTYPE html>
-<html lang="jp">
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>まさきのXBPポートフォリオ一覧</title>
-    <link rel="stylesheet" href="./css/style.css">
+<meta charset="UTF-8">
+<title>まさきのXBPポートフォリオ一覧</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ここにサイト説明を入れます">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <logotohome>
-    <a href="./index.html"><img src="./images/0_XBlogo.png" width="20%"></a>
-    </logotohome>
-    <h1>XBP</h1>
-        <h2>まさきのXBPポートフォリオ一覧</h2>
-        <div>
-        おしゃれ版は<a href="../xbp/art/index.html">こちら</a>
-        </div>
-        <!-- このようにするとコードとして認識されない。（メモができる）-->
+
+<!--下のheaderは本文ではない部分-->
+<header>
+
+<h1 id="logo"><img src="../images/0_XBlogo.png" alt="Artist Web Site"><span>小林正樹のXBP</span></h1>
+
+<!--開閉ブロック-->
+<div id="menubar">
+
+<nav>
+<ul>
+<li><a href="#">デザイン演習Ⅰ・Ⅱ</a></li>
+<li><a href="#section2">デジタルファブリケーション</a></li>
+<li><a href="#section3">デザイン演習Ⅲ・Ⅳ</a></li>
+<li><a href="#section4">デザイン演習Ⅴ</a></li>
+</ul>
+</nav>
+
+<ul class="icons">
+<li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+<li><a href="#"><i class="fab fa-line"></i></a></li>
+<li><a href="#"><i class="fab fa-youtube"></i></a></li>
+<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+</ul>
+
+</div>
+<!--/#menubar-->
+
+</header>
+
+<!--本文開始-->
+<main>
+
+<h1>小林正樹のXBPポートフォリオ</h1>
+
+<!-- ここからsection1 -->
+<section id="section1" class="section">
+    <a href="../de12/index.html"><h2>デザイン演習Ⅰ・Ⅱ</h2></a>
+    <a href="../de12/index.html"><img src="../images/de12_daijest.png" alt="de12" width="50%" srcset=""></a>
+</section>
+
+
+
+<!-- ここからsection2 -->
+
+<section id="section2" class="section">
+    <a href="../digi_fab/index.html"><h2>デジタルファブリケーション</h2>
+    <a href="../digi_fab/index.html"><img src="../images/digi_fab_daijest3.png" alt="digi_fab" width="50%" srcset=""></a>
     
-        <!--番号付きのリスト-->
-
-        <h2>1年生後期</h2>
-        <ol>
-            <li><a href="./de12/index.html">デザイン演習Ⅰ・Ⅱ</a></li>
-            <li><a href="./digi_fab/index.html">デジタルファブリケーション</a></li>
-        </ol>
-
-<h2>2年生前期</h2>
-        <ol>
-            <li><a href="./de34/index.html">デザイン演習Ⅲ・Ⅳ</a></li>
-        </ol> 
-        
- <h2>2年生後期</h2>       
-        <ol> 
-              
-            <li><a href="./de5/index.html">デザイン演習Ⅴ</a></li>
-        </ol>
+    </section>
 
 
 
-        <br>
-        <br>
+<!-- ここからsection3 -->
+
+<section id="section3" class="section">
+    <a href="../de34/index.html"><h2>デザイン演習Ⅲ・Ⅳ</h2></a>
+    <a href="../de34/index.html"><img src="../images/de34_daijest.png" alt="de34" width="50%" srcset=""></a>
+</section>
+
+
+
+<!-- ここからsection4 -->
+
+<section id="section4" class="section">
+    <a href="../de5/index.html"><h2>デザイン演習Ⅴ</h2></a>
+    <a href="../de5/index.html"><img src="../images/white.png" alt="de5" width=50%" srcset=""></a>
+
+</section>
+
+
+
+
+
+</main>
 
 <footer>
-<h3>便利アプリ</h3>
-<ul>
-<li>
-    <a href="http://marginalsoft.com/tools/srctohtml/">【無料】マージナルソフト</a>
-</li>
-<li>
-    <a href="..//de34/Tinkercad.html">【無料】電子工作シュミレータTinkercad (AUTODESK)を紹介！</a>
-</li>
+<small>Copyright&copy; <a href="index.html">Artist Web Site</a> All Rights Reserved.</small>
+<span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+</footer>
 
+<!--ページの上部へ戻るボタン-->
+<div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
 
-
-<h3>気付き</h3>
-<div>2024/05/13 
-    <br> ソフトウェアをVentureからSonomaに更新したせいか、
-    <br>htmlをgit repositoryにアップロード（コミットと同期）できなくなってしまった。
-    <br>しかし、Xcodeから自分のgitから更新前のデータを新たにダウンロードして、
-    <br>更新後の持っていたデータとの差分をダウンロードした更新前データに入れると無事自分のホームページを更新できるようになった。
-
-<br>2024/05/20
-<br>上記の行動は参考にしない方がいいです。Githubのリポジトリが複雑になって頭バグります。
+<!--開閉ボタン（ハンバーガーアイコン）-->
+<div id="menubar_hdr">
+<span></span><span></span><span></span>
 </div>
 
-</ul>
-</footer>
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--lightbox用jsファイルの読み込み-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="js/main.js"></script>
+
+</body>
+</html>
